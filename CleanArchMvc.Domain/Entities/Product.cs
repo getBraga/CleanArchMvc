@@ -5,12 +5,15 @@ namespace CleanArchMvc.Domain.Entities
     public sealed class Product 
     {
         public int Id { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public decimal Price { get; private set; }
-        public int Stock { get; private set; }
-        public string Image { get; private set; }
-
+        public  string Name { get; private set; } =  string.Empty;
+        public string Description { get; private set; } = string.Empty;
+        public decimal Price { get; private set; } 
+        public int Stock { get; private set; } 
+        public string Image { get; private set; } = string.Empty;
+        public int CategoryId { get; set; }
+        public Category Category { get; set; } = default!;
+        private Product() { }
+           
         public Product(string name, string description, decimal price, int stock, string image, Category category)
         {
           
@@ -80,7 +83,6 @@ namespace CleanArchMvc.Domain.Entities
 
         }
 
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+     
     }
 }

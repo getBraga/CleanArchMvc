@@ -11,6 +11,7 @@ namespace CleanArchMvc.Domain.Entities
     {
         public int Id { get; private set; }
         public string Name { get; private set; } = string.Empty;
+        public ICollection<Product> Products { get; set; } = new List<Product>();
 
         public Category(string name) 
         { 
@@ -25,7 +26,7 @@ namespace CleanArchMvc.Domain.Entities
             ValidateDomain(name);
 
         }
-        public ICollection<Product> Products { get; set; } = new List<Product>();
+   
         private void ValidateDomain(string name)
         {
             DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name. Name is required");

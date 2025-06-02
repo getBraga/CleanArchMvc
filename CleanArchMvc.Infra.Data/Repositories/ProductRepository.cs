@@ -30,7 +30,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
             return result ?? throw new Exception("Nenhum produto encontrado!");
         }
 
-        public async Task<Product> GetProductProductAsync(int? Id)
+        public async Task<Product> GetProductCategoryAsync(int? Id)
         {
             var result = await _producContext.Products.Include(c => c.Category).SingleOrDefaultAsync(p => p.Id == Id);
             return result ?? throw new Exception("Nenhum produto encontrado!");

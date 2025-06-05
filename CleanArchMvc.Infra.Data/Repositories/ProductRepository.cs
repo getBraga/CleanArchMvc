@@ -26,15 +26,11 @@ namespace CleanArchMvc.Infra.Data.Repositories
 
         public async Task<Product?> GetByIdAsync(int? Id)
         {
-            var result = await _producContext.Products.FindAsync(Id);
-            return result;
-        }
-
-        public async Task<Product?> GetProductCategoryAsync(int? Id)
-        {
             var result = await _producContext.Products.Include(c => c.Category).SingleOrDefaultAsync(p => p.Id == Id);
             return result;
         }
+
+   
 
         public async Task<IEnumerable<Product>> GetProductsAsync()
         {

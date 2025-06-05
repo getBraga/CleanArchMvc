@@ -14,25 +14,23 @@ namespace CleanArchMvc.Domain.Entities
         public Category Category { get; set; } = default!;
         private Product() { }
            
-        public Product(string name, string description, decimal price, int stock, string image, Category category)
+        public Product(string name, string description, decimal price, int stock, string image)
         {
           
             ValidateDomain(name, description, price, stock, image);
-            if (category is null)
-                throw new DomainExceptionValidation("Category is required.");
+
             Name = name;
             Description =  description;
             Price = price;
             Image = image;
-            Category = category;
+   
         
         }
 
-        public Product(int id, string name, string description, decimal price, int stock, string image, Category category)
+        public Product(int id, string name, string description, decimal price, int stock, string image)
         {
             DomainExceptionValidation.When(id < 0, "Invalid Id value.");
-            if (category is null)
-                throw new DomainExceptionValidation("Category is required.");
+ 
             Id = id;
            
             ValidateDomain(name, description, price, stock, image);
@@ -41,7 +39,7 @@ namespace CleanArchMvc.Domain.Entities
             Price = price;
             Stock = stock;
             Image = image;
-            Category = category;
+        
 
         }
 

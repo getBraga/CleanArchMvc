@@ -33,7 +33,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-            return await _categoryContext.Categories.ToListAsync();
+            return await _categoryContext.Categories.OrderBy(x => x.Name).ToListAsync();
         }
 
         public async Task<Category> RemoveAsync(Category category)

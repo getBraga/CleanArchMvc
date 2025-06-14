@@ -34,8 +34,8 @@ namespace CleanArchMvc.Application.DTOs
         public int Stock { get;  set; }
         [MaxLength(250)]
         [DisplayName("Product Image")]
-        public string Image { get;  set; } = string.Empty;
-        public Category? Category { get; set; }
+        public string? Image { get; set; } = string.Empty;
+        public required Category Category { get; set; }
 
         [DisplayName("Categories")]
         public int CategoryId { get; set; }

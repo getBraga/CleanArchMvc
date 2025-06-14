@@ -67,7 +67,7 @@ namespace CleanArchMvc.WebUI.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View();
         }
 
         [HttpGet]
@@ -101,6 +101,8 @@ namespace CleanArchMvc.WebUI.Controllers
         {
             var product = await _productService.GetProductById(id);
             if(product == null) return NotFound();
+            ViewBag.ImageExist = product.Image != null ? true : false;
+           
             return View(product);
         }
 

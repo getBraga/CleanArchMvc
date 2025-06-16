@@ -53,6 +53,7 @@ namespace CleanArchMvc.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(ProductDTO product)
         {
+
             if (ModelState.IsValid)
             {
                 try
@@ -61,13 +62,17 @@ namespace CleanArchMvc.WebUI.Controllers
 
 
                 }
+
                 catch (Exception)
                 {
                     throw;
                 }
                 return RedirectToAction("Index");
             }
+
             return View();
+
+
         }
 
         [HttpGet]
@@ -97,12 +102,12 @@ namespace CleanArchMvc.WebUI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult>Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             var product = await _productService.GetProductById(id);
-            if(product == null) return NotFound();
-            ViewBag.ImageExist = product.Image != null ? true : false;
-           
+            if (product == null) return NotFound();
+            ViewBag.ImageExist = product.Image != null;
+
             return View(product);
         }
 

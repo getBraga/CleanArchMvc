@@ -1,8 +1,12 @@
+using CleanArchMvc.Infra.IoC;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container
+builder.Services.AddInfrastructureAPI(builder.Configuration);
+builder.Services.AddControllers().AddNewtonsoftJson(x =>
+{
+    x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {

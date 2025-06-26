@@ -38,7 +38,7 @@ namespace CleanArchMvc.Application.Services
         public async Task<ProductDTO> GetProductById(int id)
         {
             var mediatorProduts = new GetProductByIdQuery(id);
-            var products = await _mediator.Send(mediatorProduts);
+            var products = await _mediator.Send(mediatorProduts);        
             return _mapper.Map<ProductDTO>(products);
         }
 

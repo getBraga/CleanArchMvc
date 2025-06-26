@@ -39,6 +39,7 @@ namespace CleanArchMvc.Application.Services
         public async Task Remove(int id)
         {
             var categoryRemoveAwait = await _categoryRepository.GetByIdAsync(id);
+            if(categoryRemoveAwait != null) 
             await _categoryRepository.RemoveAsync(categoryRemoveAwait);
         }
 

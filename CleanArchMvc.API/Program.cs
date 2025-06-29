@@ -1,3 +1,4 @@
+using CleanArchMvc.Domain.Account;
 using CleanArchMvc.Infra.Data.Settings;
 using CleanArchMvc.Infra.IoC;
 using Microsoft.OpenApi.Models;
@@ -11,6 +12,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(x =>
 builder.Services.Configure<JwtSettings>(
     builder.Configuration.GetSection("JWT")
 );
+
 builder.Services.AddControllers();  
 builder.Services.AddSwaggerGen(c =>
 {
@@ -29,6 +31,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
+    seedUserRoleInitial.SeedRoles();
+    seedUserRoleInitial.SeedUsers();
 }
 app.MapGet("/", context =>
 {

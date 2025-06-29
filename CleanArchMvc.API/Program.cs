@@ -1,3 +1,4 @@
+using CleanArchMvc.Infra.Data.Settings;
 using CleanArchMvc.Infra.IoC;
 using Microsoft.OpenApi.Models;
 
@@ -7,7 +8,10 @@ builder.Services.AddControllers().AddNewtonsoftJson(x =>
 {
     x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
-builder.Services.AddControllers();
+builder.Services.Configure<JwtSettings>(
+    builder.Configuration.GetSection("JWT")
+);
+builder.Services.AddControllers();  
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
